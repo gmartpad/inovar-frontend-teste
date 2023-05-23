@@ -1,30 +1,28 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { IconButton, InputAdornment, TextField } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import React, { useState, useEffect, useRef } from 'react'
+import { TextField } from '@mui/material'
+import SearchStartAdornment from '@components/SearchStartAdornment'
 
 interface Props {
   handleSearch: (value: string) => void
 }
 
-const SearchBar: React.FC<Props> = ({
-  handleSearch
-}) => {
-  const [searchValue, setSearchValue] = useState<string>('');
-  const [isDebouncing, setIsDebouncing] = useState<boolean>(false);
-  const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
+const SearchBar: React.FC<Props> = ({ handleSearch }) => {
+  const [searchValue, setSearchValue] = useState<string>('')
+  const [isDebouncing, setIsDebouncing] = useState<boolean>(false)
+  const debounceTimeout = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     if (debounceTimeout.current) {
-      clearTimeout(debounceTimeout.current);
+      clearTimeout(debounceTimeout.current)
     }
     if (searchValue !== '') {
-      setIsDebouncing(true);
+      setIsDebouncing(true)
       debounceTimeout.current = setTimeout(() => {
-        handleSearch(searchValue);
-        setIsDebouncing(false);
-      }, 1500);
+        handleSearch(searchValue)
+        setIsDebouncing(false)
+      }, 1500)
     }
-  }, [searchValue]);
+  }, [searchValue])
 
   return (
     <TextField
@@ -33,15 +31,14 @@ const SearchBar: React.FC<Props> = ({
       onChange={(e) => setSearchValue(e.target.value)}
       InputProps={{
         startAdornment: (
-          <InputAdornment position="start">
-            <IconButton data-testid="SearchButton" disabled={isDebouncing} onClick={() => handleSearch(searchValue)}>
-              <SearchIcon />
-            </IconButton>
-          </InputAdornment>
+          <SearchStartAdornment
+            isDebouncing={isDebouncing}
+            onClick={() => handleSearch(searchValue)}
+          />
         ),
       }}
     />
-  );
-};
+  )
+}
 
-export default SearchBar;
+export default SearchBar
