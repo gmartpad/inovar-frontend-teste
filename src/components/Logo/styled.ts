@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import customTheme from '@src/theme'
 
 interface LogoProps {
   backgroundColor: string
@@ -12,7 +13,8 @@ export const StyledLogo = styled.div<LogoProps>`
   position: relative;
   width: 40px;
   height: 23px;
-  background-color: ${({ backgroundColor }) => backgroundColor || '#E3472F'};
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor || customTheme?.palette?.primary?.main};
   margin: 11.5px 0;
 
   &:before,
@@ -27,14 +29,16 @@ export const StyledLogo = styled.div<LogoProps>`
   &:before {
     bottom: 100%;
     border-bottom: 11.5px solid
-      ${({ backgroundColor }) => backgroundColor || '#E3472F'};
+      ${({ backgroundColor }) =>
+        backgroundColor || customTheme?.palette?.primary?.main};
   }
 
   &:after {
     top: 100%;
     width: 0;
     border-top: 11.5px solid
-      ${({ backgroundColor }) => backgroundColor || '#E3472F'};
+      ${({ backgroundColor }) =>
+        backgroundColor || customTheme?.palette?.primary?.main};
   }
 `
 

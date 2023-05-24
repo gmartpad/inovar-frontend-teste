@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconButton, InputAdornment } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
+import { StyledSearchIcon } from './styled'
 
 interface SearchStartAdornmentProps {
   isDebouncing: boolean
@@ -18,7 +18,7 @@ const SearchStartAdornment: React.FC<SearchStartAdornmentProps> = ({
         disabled={isDebouncing}
         onClick={onClick}
       >
-        <SearchIcon />
+        <StyledSearchIcon />
       </IconButton>
     </InputAdornment>
   )

@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
+import { Box } from '@mui/material'
+import { StyledButton, VerticalLine } from './styled'
 
 interface AddPostButtonProps {
   onClick: () => void
@@ -8,14 +9,19 @@ interface AddPostButtonProps {
 
 const AddPostButton: React.FC<AddPostButtonProps> = ({ onClick }) => {
   return (
-    <Button
-      variant="contained"
+    <StyledButton
       color="primary"
+      variant="contained"
       onClick={onClick}
-      startIcon={<AddIcon />}
+      startIcon={
+        <Box display="flex" alignItems="center">
+          <AddIcon />
+          <VerticalLine />
+        </Box>
+      }
     >
       Add Post
-    </Button>
+    </StyledButton>
   )
 }
 
