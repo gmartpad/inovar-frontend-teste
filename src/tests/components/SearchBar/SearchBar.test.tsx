@@ -3,29 +3,29 @@ import { act } from 'react-dom/test-utils'
 import { render, fireEvent, screen } from '@testing-library/react'
 import SearchBar from '@components/SearchBar'
 
-describe('Componente SearchBar', () => {
+describe('SearchBar', () => {
   test('renderiza sem crashar', async () => {
     const handleSearch = jest.fn()
-    const { getByLabelText } = render(<SearchBar handleSearch={handleSearch} />)
-    const input = getByLabelText('Search')
+    const { getByRole } = render(<SearchBar handleSearch={handleSearch} />)
+    const input = getByRole('textbox')
     expect(input).toBeInTheDocument()
   })
 
-  test('gerencia mudanca do valor de pesquisa', async () => {
+  test('gerencia a mudanca do valor de pesquisa', async () => {
     const handleSearch = jest.fn()
-    const { getByLabelText } = render(<SearchBar handleSearch={handleSearch} />)
-    const input = getByLabelText('Search')
+    const { getByRole } = render(<SearchBar handleSearch={handleSearch} />)
+    const input = getByRole('textbox')
     fireEvent.change(input, { target: { value: 'react' } })
     expect(input).toHaveValue('react')
   })
 
-  test('gerencia click do botao de pesquisa', async () => {
+  test('gerencia o click do botao de buscahandles search button click', async () => {
     jest.useFakeTimers()
 
     const handleSearch = jest.fn()
-    const { getByLabelText } = render(<SearchBar handleSearch={handleSearch} />)
-    const input = getByLabelText('Search')
-    const button = await screen.getByTestId('SearchButton')
+    const { getByRole } = render(<SearchBar handleSearch={handleSearch} />)
+    const input = getByRole('textbox')
+    const button = screen.getByTestId('SearchButton')
 
     await act(async () => {
       fireEvent.change(input, { target: { value: 'react' } })
@@ -42,12 +42,12 @@ describe('Componente SearchBar', () => {
     expect(handleSearch).toHaveBeenCalledWith('react')
   })
 
-  test('faz debounce input de pesquisa', async () => {
+  test('realiza o debounce no input de pesquisa', async () => {
     jest.useFakeTimers()
 
     const handleSearch = jest.fn()
-    const { getByLabelText } = render(<SearchBar handleSearch={handleSearch} />)
-    const input = getByLabelText('Search')
+    const { getByRole } = render(<SearchBar handleSearch={handleSearch} />)
+    const input = getByRole('textbox')
 
     await act(async () => {
       fireEvent.change(input, { target: { value: 'react' } })

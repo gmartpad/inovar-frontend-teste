@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { TextField } from '@mui/material'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import SearchStartAdornment from '@components/SearchStartAdornment'
+import { StyledTextField } from './styled'
 
 interface Props {
   handleSearch: (value: string) => void
@@ -24,14 +24,29 @@ const SearchBar: React.FC<Props> = ({ handleSearch }) => {
     }
   }, [searchValue])
 
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        if (debounceTimeout.current) {
+          clearTimeout(debounceTimeout.current)
+        }
+        console.log(`searchValue: ${searchValue}`)
+        handleSearch(searchValue)
+        setIsDebouncing(false)
+      }
+    },
+    [debounceTimeout, handleSearch, setIsDebouncing, searchValue],
+  )
+
   return (
-    <TextField
-      label="Search"
+    <StyledTextField
       value={searchValue}
       onChange={(e) => setSearchValue(e.target.value)}
+      onKeyDown={handleKeyDown}
       InputProps={{
         startAdornment: (
           <SearchStartAdornment
+            data-testid="SearchButton"
             isDebouncing={isDebouncing}
             onClick={() => handleSearch(searchValue)}
           />
