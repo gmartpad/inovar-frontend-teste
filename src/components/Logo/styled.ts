@@ -15,7 +15,7 @@ export const StyledLogo = styled.div<LogoProps>`
   height: 23px;
   background-color: ${({ backgroundColor }) =>
     backgroundColor || customTheme?.palette?.primary?.main};
-  margin: 11.5px 0;
+  margin: auto 0;
 
   &:before,
   &:after {

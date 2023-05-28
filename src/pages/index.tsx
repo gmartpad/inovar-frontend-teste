@@ -2,9 +2,17 @@ import SearchBar from '@components/SearchBar'
 import AddPostButton from '@components/AddPostButton'
 import Logo from '@components/Logo'
 import Divider from '@components/Divider'
-import { Container } from '@mui/material'
+import { Box, Container } from '@mui/material'
+import { useState } from 'react'
+import BurgerMenu from '@components/BurgerMenu'
 
 export default function Home() {
+  const [selectedItems, setSelectedItems] = useState<string[]>([])
+
+  const handleSelect = (selectedItems: string[]) => {
+    setSelectedItems(selectedItems)
+  }
+
   return (
     <Container
       style={{
@@ -15,14 +23,23 @@ export default function Home() {
         justifyContent: 'space-between',
       }}
     >
-      <Logo text="UX" />
-      <Divider />
-      <SearchBar
-        handleSearch={(value) => {
-          console.log(value)
+      <Box
+        style={{
+          display: 'flex',
         }}
-      />
-      <AddPostButton onClick={() => console.log('Add Post Button')} />
+      >
+        <Logo text="UX" />
+        <Divider />
+        <BurgerMenu selectedItems={selectedItems} onSelect={handleSelect} />
+        <SearchBar
+          handleSearch={(value) => {
+            console.log(value)
+          }}
+        />
+      </Box>
+      <Box>
+        <AddPostButton onClick={() => console.log('Add Post Button')} />
+      </Box>
     </Container>
   )
 }
