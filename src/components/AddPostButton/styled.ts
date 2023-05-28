@@ -1,4 +1,5 @@
 import { Button, Box } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/system'
 
 export const StyledButton = styled(Button)({
@@ -6,6 +7,10 @@ export const StyledButton = styled(Button)({
   paddingBottom: 0,
   height: 'fit-content',
   textTransform: 'none',
+})
+
+export const StyledAddIcon = styled(AddIcon)({
+  marginRight: 8,
 })
 
 export const VerticalLine = styled(Box)({

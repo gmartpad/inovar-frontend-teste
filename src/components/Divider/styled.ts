@@ -5,6 +5,6 @@ export const Pipe = styled.div`
   min-width: 1px;
   background: #ddd;
   border-radius: 2px;
-  margin: 0 16px 0 16px;
+  margin: auto 16px auto 16px;
   height: 50px;
 `

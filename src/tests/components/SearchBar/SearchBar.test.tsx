@@ -4,14 +4,14 @@ import { render, fireEvent, screen } from '@testing-library/react'
 import SearchBar from '@components/SearchBar'
 
 describe('SearchBar', () => {
-  test('renderiza sem crashar', async () => {
+  it('renderiza sem crashar', async () => {
     const handleSearch = jest.fn()
     const { getByRole } = render(<SearchBar handleSearch={handleSearch} />)
     const input = getByRole('textbox')
     expect(input).toBeInTheDocument()
   })
 
-  test('gerencia a mudanca do valor de pesquisa', async () => {
+  it('gerencia a mudanca do valor de pesquisa', async () => {
     const handleSearch = jest.fn()
     const { getByRole } = render(<SearchBar handleSearch={handleSearch} />)
     const input = getByRole('textbox')
@@ -19,7 +19,7 @@ describe('SearchBar', () => {
     expect(input).toHaveValue('react')
   })
 
-  test('gerencia o click do botao de buscahandles search button click', async () => {
+  it('gerencia o click do botao de buscahandles search button click', async () => {
     jest.useFakeTimers()
 
     const handleSearch = jest.fn()
@@ -42,7 +42,7 @@ describe('SearchBar', () => {
     expect(handleSearch).toHaveBeenCalledWith('react')
   })
 
-  test('realiza o debounce no input de pesquisa', async () => {
+  it('realiza o debounce no input de pesquisa', async () => {
     jest.useFakeTimers()
 
     const handleSearch = jest.fn()
