@@ -1,18 +1,21 @@
 import React from 'react'
 import { Box } from '@mui/material'
 import { StyledAddIcon, StyledButton, VerticalLine } from './styled'
+import { useRouter } from 'next/router'
 
-interface AddPostButtonProps {
-  onClick: () => void
-}
+const AddPostButton: React.FC = () => {
+  const router = useRouter()
 
-const AddPostButton: React.FC<AddPostButtonProps> = ({ onClick }) => {
+  const handleClick = () => {
+    router.push('/add-post')
+  }
+
   return (
     <StyledButton
       data-testid="add-post-button"
       color="primary"
       variant="contained"
-      onClick={onClick}
+      onClick={handleClick}
       startIcon={
         <Box display="flex" alignItems="center">
           <StyledAddIcon data-testid="add-post-button-add-icon" />

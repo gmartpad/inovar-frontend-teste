@@ -1,22 +1,15 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import AddPostButton from '@components/AddPostButton'
 
 describe('AddPostButton', () => {
   it('renderiza corretamente', () => {
-    const { getByText } = render(<AddPostButton onClick={() => {}} />)
+    const { getByText } = render(<AddPostButton />)
     expect(getByText('Add Post')).toBeInTheDocument()
   })
 
-  it('chama a funcao onClick quando é clicada', () => {
-    const handleClick = jest.fn()
-    const { getByText } = render(<AddPostButton onClick={handleClick} />)
-    fireEvent.click(getByText('Add Post'))
-    expect(handleClick).toHaveBeenCalledTimes(1)
-  })
-
   it('renderiza o StyledAddIcon e o VerticalLine corretamente', () => {
-    const { getByTestId } = render(<AddPostButton onClick={() => {}} />)
+    const { getByTestId } = render(<AddPostButton />)
 
     // Isso checa se o StyledButton tá presente no DOM
     expect(getByTestId('add-post-button')).toBeInTheDocument()

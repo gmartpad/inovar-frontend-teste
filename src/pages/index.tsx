@@ -5,6 +5,7 @@ import Divider from '@components/Divider'
 import { Box, Container } from '@mui/material'
 import { useState } from 'react'
 import BurgerMenu from '@components/BurgerMenu'
+import ProfileIcon from '@components/ProfileIcon'
 
 export default function Home() {
   const [selectedItems, setSelectedItems] = useState<string[]>([])
@@ -37,8 +38,14 @@ export default function Home() {
           }}
         />
       </Box>
-      <Box>
-        <AddPostButton onClick={() => console.log('Add Post Button')} />
+      <Box
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <AddPostButton />
+        <ProfileIcon />
       </Box>
     </Container>
   )
