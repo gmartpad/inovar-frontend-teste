@@ -22,7 +22,7 @@ const SearchBar: React.FC<Props> = ({ handleSearch }) => {
         setIsDebouncing(false)
       }, 1500)
     }
-  }, [searchValue])
+  }, [searchValue, handleSearch])
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {

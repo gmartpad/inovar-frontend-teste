@@ -11,7 +11,7 @@ interface LogoInnerProps {
 
 export const StyledLogo = styled.div<LogoProps>`
   position: relative;
-  width: 40px;
+  min-width: 40px;
   height: 23px;
   background-color: ${({ backgroundColor }) =>
     backgroundColor || customTheme?.palette?.primary?.main};

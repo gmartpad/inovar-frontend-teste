@@ -2,8 +2,8 @@ import SearchBar from '@components/SearchBar'
 import AddPostButton from '@components/AddPostButton'
 import Logo from '@components/Logo'
 import Divider from '@components/Divider'
-import { Box, Container } from '@mui/material'
-import { useState } from 'react'
+import { Box, Container, useMediaQuery } from '@mui/material'
+import { useMemo, useState } from 'react'
 import BurgerMenu from '@components/BurgerMenu'
 import ProfileIcon from '@components/ProfileIcon'
 
@@ -13,6 +13,8 @@ export default function Home() {
   const handleSelect = (selectedItems: string[]) => {
     setSelectedItems(selectedItems)
   }
+
+  const isMobile = useMediaQuery('(max-width:650px)')
 
   return (
     <Container
@@ -44,9 +46,10 @@ export default function Home() {
           alignItems: 'center',
         }}
       >
-        <AddPostButton />
+        {!isMobile && <AddPostButton />}
         <ProfileIcon />
       </Box>
+      {/* <p>isMobile: {JSON.stringify(isMobile)} </p> */}
     </Container>
   )
 }

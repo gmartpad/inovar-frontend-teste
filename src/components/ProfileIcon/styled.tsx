@@ -3,14 +3,20 @@ import { styled } from '@mui/system'
 import customTheme from '@src/theme'
 import { TailSpin } from 'react-loader-spinner'
 
-export const ProfileIconButton = styled(Button)({
-  position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  marginLeft: 24,
-})
+interface ProfileIconButtonProps {
+  ismobile: string
+}
+
+export const ProfileIconButton = styled(Button)(
+  ({ ismobile }: ProfileIconButtonProps) => ({
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginLeft: ismobile === 'true' ? 12 : 24,
+  }),
+)
 
 // ----
 
