@@ -2,12 +2,12 @@ import SearchBar from '@components/SearchBar'
 import AddPostButton from '@components/AddPostButton'
 import Logo from '@components/Logo'
 import Divider from '@components/Divider'
-import { Box, Container, useMediaQuery } from '@mui/material'
-import { useState } from 'react'
+import { Box, Container, Typography, useMediaQuery } from '@mui/material'
+import React, { useState } from 'react'
 import BurgerMenu from '@components/BurgerMenu'
 import ProfileIcon from '@components/ProfileIcon'
 
-export default function Home() {
+const Footer: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([])
 
   const handleSelect = (selectedItems: string[]) => {
@@ -26,7 +26,9 @@ export default function Home() {
         justifyContent: 'space-between',
       }}
     >
-      <p>aiai</p>
+      <Typography color="#000">Footer</Typography>
     </Container>
   )
 }
+
+export default Footer

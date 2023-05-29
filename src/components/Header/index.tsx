@@ -3,11 +3,11 @@ import AddPostButton from '@components/AddPostButton'
 import Logo from '@components/Logo'
 import Divider from '@components/Divider'
 import { Box, Container, useMediaQuery } from '@mui/material'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import BurgerMenu from '@components/BurgerMenu'
 import ProfileIcon from '@components/ProfileIcon'
 
-export default function Home() {
+const Header: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([])
 
   const handleSelect = (selectedItems: string[]) => {
@@ -26,7 +26,31 @@ export default function Home() {
         justifyContent: 'space-between',
       }}
     >
-      <p>aiai</p>
+      <Box
+        style={{
+          display: 'flex',
+        }}
+      >
+        <Logo text="UX" />
+        <Divider />
+        <BurgerMenu selectedItems={selectedItems} onSelect={handleSelect} />
+        <SearchBar
+          handleSearch={(value) => {
+            console.log(value)
+          }}
+        />
+      </Box>
+      <Box
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        {!isMobile && <AddPostButton />}
+        <ProfileIcon />
+      </Box>
     </Container>
   )
 }
+
+export default Header
