@@ -8,17 +8,13 @@ import {
   StyledFormContainer,
 } from './styled'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
 import LoadingSpinner from '@components/LoadingSpinner'
 import ProfileIconList from '@components/ProfileIconList'
 
 const ProfileIcon: React.FC = () => {
-  const router = useRouter()
-  const { asPath } = router
-
   const isMobile = useMediaQuery('(max-width:650px)')
 
-  const [paths, setPaths] = useState([
+  const paths = [
     '/',
     '/add-post',
     '/about',
@@ -26,25 +22,16 @@ const ProfileIcon: React.FC = () => {
     '/notifications',
     '/profile',
     '/sign-in',
-  ])
+  ]
 
   const [notificationQty, setNotificationQty] = useState<number>(4)
   const [imageSrc, setImageSrc] = useState<string>('')
   const [open, setOpen] = useState<boolean>(false)
   const anchorEl = useRef<null | HTMLElement>(null)
 
-  const handlePaths = useCallback(() => {
-    const currentPathIsPresent = paths.includes(asPath)
-    if (currentPathIsPresent) {
-      const newPaths = paths.filter((item) => item !== asPath)
-      setPaths(newPaths)
-    }
-  }, [paths, asPath])
-
   useEffect(() => {
     setImageSrc('http://github.com/gmartpad.png')
-    handlePaths()
-  }, [handlePaths])
+  }, [])
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
