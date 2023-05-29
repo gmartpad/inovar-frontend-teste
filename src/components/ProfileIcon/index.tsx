@@ -1,9 +1,7 @@
-import { Box, MenuItem, Popover } from '@mui/material'
-import Case from 'case'
+import { Popover, useMediaQuery } from '@mui/material'
 import Image from 'mui-image'
 import {
   NotificationsBox,
-  NotificationsCircle,
   NotificationsTypography,
   ProfileIconButton,
   StyledForm,
@@ -11,16 +9,18 @@ import {
 } from './styled'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import LoadingSpinner from '@components/LoadingSpinner'
-import customTheme from '@src/theme'
+import ProfileIconList from '@components/ProfileIconList'
 
 const ProfileIcon: React.FC = () => {
   const router = useRouter()
   const { asPath } = router
 
+  const isMobile = useMediaQuery('(max-width:650px)')
+
   const [paths, setPaths] = useState([
     '/',
+    '/add-post',
     '/about',
     '/contact',
     '/notifications',
@@ -39,12 +39,12 @@ const ProfileIcon: React.FC = () => {
       const newPaths = paths.filter((item) => item !== asPath)
       setPaths(newPaths)
     }
-  }, [])
+  }, [paths, asPath])
 
   useEffect(() => {
     setImageSrc('http://github.com/gmartpad.png')
     handlePaths()
-  }, [])
+  }, [handlePaths])
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -63,6 +63,7 @@ const ProfileIcon: React.FC = () => {
     <>
       <ProfileIconButton
         data-testid="profile-icon-button"
+        ismobile={String(isMobile)}
         onClick={handleClick}
       >
         <Image
@@ -94,22 +95,10 @@ const ProfileIcon: React.FC = () => {
         >
           <StyledFormContainer>
             <StyledForm>
-              {paths.map((item) => (
-                <MenuItem key={item} value={item}>
-                  <Link href={item}>
-                    {item === '/'
-                      ? 'Home'
-                      : Case.capital(item.replace('/', ''))}
-                  </Link>
-                  {item === '/notifications' && (
-                    <NotificationsCircle>
-                      <NotificationsTypography>
-                        {notificationQty > 99 ? '99+' : notificationQty}
-                      </NotificationsTypography>
-                    </NotificationsCircle>
-                  )}
-                </MenuItem>
-              ))}
+              <ProfileIconList
+                paths={paths}
+                notificationQty={notificationQty}
+              />
             </StyledForm>
           </StyledFormContainer>
         </Popover>

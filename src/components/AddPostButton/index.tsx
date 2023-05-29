@@ -1,6 +1,11 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import { StyledAddIcon, StyledButton, VerticalLine } from './styled'
+import {
+  StyledAddIcon,
+  StyledButton,
+  StyledTypography,
+  VerticalLine,
+} from './styled'
 import { useRouter } from 'next/router'
 
 const AddPostButton: React.FC = () => {
@@ -17,13 +22,13 @@ const AddPostButton: React.FC = () => {
       variant="contained"
       onClick={handleClick}
       startIcon={
-        <Box display="flex" alignItems="center">
+        <Box maxWidth={35} display="flex" alignItems="center">
           <StyledAddIcon data-testid="add-post-button-add-icon" />
           <VerticalLine data-testid="add-post-button-v-line" />
         </Box>
       }
     >
-      Add Post
+      <StyledTypography>Add Post</StyledTypography>
     </StyledButton>
   )
 }
