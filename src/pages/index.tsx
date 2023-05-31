@@ -53,7 +53,7 @@ const Home: React.FC<HomeProps> = ({ links }) => {
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch(process.env.LINKS_URL)
+    const response = await fetch(process.env.NEXT_PUBLIC_LINKS_URL)
     const data = await response.json()
     const { links } = data
     return { props: { links } }
