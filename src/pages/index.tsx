@@ -53,9 +53,7 @@ const Home: React.FC<HomeProps> = ({ links }) => {
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch(
-      `https://www.mocky.io/v2/5a6bc16631000078341b8b77`,
-    )
+    const response = await fetch(process.env.LINKS_URL)
     const data = await response.json()
     const { links } = data
     return { props: { links } }

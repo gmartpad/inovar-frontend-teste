@@ -160,7 +160,10 @@ const LinkList: React.FC<LinkListProps> = ({ links }) => {
         orderedLinks.map((i, k) => (
           <StyledLinkItemBox key={k}>
             <StyledUpvoteBox data-testid="upvotes">
-              <StyledArrowIconButton aria-label="upvote button">
+              <StyledArrowIconButton
+                onClick={() => alert('upvote')}
+                aria-label="upvote button"
+              >
                 <KeyboardArrowUpIcon color="primary" />
               </StyledArrowIconButton>
               <StyledUpvoteTypographyBox>
