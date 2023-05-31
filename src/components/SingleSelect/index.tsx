@@ -25,7 +25,7 @@ const SingleSelect: React.FC = () => {
     (selectedItems: string[]) => {
       dispatch(setOrderSelectedValue(selectedItems))
     },
-    [dispatch, setOrderSelectedValue],
+    [dispatch],
   )
 
   const selectLabel = useMemo(
