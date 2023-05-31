@@ -1,5 +1,4 @@
 import { Popover, useMediaQuery } from '@mui/material'
-import Image from 'mui-image'
 import {
   NotificationsBox,
   NotificationsTypography,
@@ -8,15 +7,15 @@ import {
   StyledFormContainer,
 } from './styled'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import LoadingSpinner from '@components/LoadingSpinner'
 import ProfileIconList from '@components/ProfileIconList'
+import ProfileImage from '@components/ProfileImage'
 
 const ProfileIcon: React.FC = () => {
   const isMobile = useMediaQuery('(max-width:650px)')
 
   const paths = [
-    '/',
     '/add-post',
+    '/',
     '/about',
     '/contact',
     '/notifications',
@@ -53,17 +52,11 @@ const ProfileIcon: React.FC = () => {
         ismobile={String(isMobile)}
         onClick={handleClick}
       >
-        <Image
-          key="profile-icon"
-          src={imageSrc}
-          alt={'Perfil de Usuario'}
+        <ProfileImage
+          imageSrc={imageSrc}
           width={44}
           height={44}
-          style={{
-            borderRadius: 4,
-          }}
-          showLoading={<LoadingSpinner />}
-          onError={null}
+          borderRadius={4}
         />
         <NotificationsBox>
           <NotificationsTypography>

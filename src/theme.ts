@@ -18,6 +18,12 @@ const customTheme = createTheme({
       },
     },
   },
+  typography: {
+    body1: {
+      fontFamily: 'Raleway, sans-serif',
+      color: '#000',
+    },
+  },
 })
 
 export default customTheme

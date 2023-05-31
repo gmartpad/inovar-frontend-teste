@@ -1,27 +1,44 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import SearchStartAdornment from '@components/SearchStartAdornment'
 import { StyledTextField } from './styled'
+import { useAppDispatch } from '@store/reduxHooks'
+import {
+  setDebounceActive,
+  setPostSearchValue,
+} from '@features/global/globalSlice'
 
-interface Props {
-  handleSearch: (value: string) => void
-}
+const SearchBar: React.FC = () => {
+  const dispatch = useAppDispatch()
 
-const SearchBar: React.FC<Props> = ({ handleSearch }) => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [isDebouncing, setIsDebouncing] = useState<boolean>(false)
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null)
+
+  const handleSearch = useCallback(
+    (searchValue: string) => {
+      dispatch(setPostSearchValue(searchValue))
+    },
+    [dispatch, setPostSearchValue],
+  )
+
+  const handleReduxDebounce = useCallback(
+    (value: boolean) => {
+      dispatch(setDebounceActive(value))
+    },
+    [dispatch, setDebounceActive],
+  )
 
   useEffect(() => {
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current)
     }
-    if (searchValue !== '') {
-      setIsDebouncing(true)
-      debounceTimeout.current = setTimeout(() => {
-        handleSearch(searchValue)
-        setIsDebouncing(false)
-      }, 1500)
-    }
+    setIsDebouncing(true)
+    handleReduxDebounce(true)
+    debounceTimeout.current = setTimeout(() => {
+      handleSearch(searchValue)
+      setIsDebouncing(false)
+      handleReduxDebounce(false)
+    }, 1500)
   }, [searchValue, handleSearch])
 
   const handleKeyDown = useCallback(
@@ -30,9 +47,9 @@ const SearchBar: React.FC<Props> = ({ handleSearch }) => {
         if (debounceTimeout.current) {
           clearTimeout(debounceTimeout.current)
         }
-        console.log(`searchValue: ${searchValue}`)
         handleSearch(searchValue)
         setIsDebouncing(false)
+        handleReduxDebounce(false)
       }
     },
     [debounceTimeout, handleSearch, setIsDebouncing, searchValue],

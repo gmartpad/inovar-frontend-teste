@@ -7,6 +7,7 @@ import { Box, MenuItem, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 import Case from 'case'
 import { useRouter } from 'next/router'
+import { StyledAddPostButton } from './styled'
 
 interface ProfileIconListProps {
   paths: string[]
@@ -20,7 +21,7 @@ const ProfileIconList: React.FC<ProfileIconListProps> = ({
   const router = useRouter()
   const { asPath } = router
 
-  const isMobile = useMediaQuery('(max-width:650px)')
+  const isMobile = useMediaQuery('(max-width:780px)')
 
   return (
     <>
@@ -29,7 +30,7 @@ const ProfileIconList: React.FC<ProfileIconListProps> = ({
           if (isMobile) {
             return (
               <Box key={item}>
-                <AddPostButton data-testid="add-post-list-mobile" />
+                <StyledAddPostButton data-testid="add-post-list-mobile" />
                 <Box marginBottom={2} />
               </Box>
             )

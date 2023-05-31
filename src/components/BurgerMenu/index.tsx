@@ -9,14 +9,13 @@ import {
   StyledFormContainer,
   StyledMenuIcon,
 } from './styled'
-import MultipleSelect from '@components/MultipleSelect'
+import SingleSelect from '@components/SingleSelect'
+import { useAppSelector } from '@store/reduxHooks'
+import { getOrderSelectedValue } from '@features/global/globalSlice'
 
-interface BurgerMenuProps {
-  selectedItems: string[]
-  onSelect: (selectedItems: string[]) => void
-}
+const BurgerMenu: React.FC = () => {
+  const selectedItems = useAppSelector(getOrderSelectedValue)
 
-const BurgerMenu: React.FC<BurgerMenuProps> = ({ selectedItems, onSelect }) => {
   const [open, setOpen] = useState<boolean>(false)
 
   const anchorEl = useRef<null | HTMLElement>(null)
@@ -30,8 +29,6 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ selectedItems, onSelect }) => {
     setOpen(false)
     anchorEl.current = null
   }
-
-  const filterValues = ['One', 'Two', 'Three']
 
   return (
     <StyledBurgerMenuContainer data-testid="burger-menu">
@@ -51,21 +48,9 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ selectedItems, onSelect }) => {
           <StyledFormContainer>
             <StyledForm>
               <InputLabel data-testid="burger-input-label">
-                {selectedItems?.length === 0
-                  ? 'Filtrar...'
-                  : selectedItems.join(', ')}
+                {selectedItems?.length === 0 ? 'Order by...' : selectedItems}
               </InputLabel>
-              <MultipleSelect
-                selectedItems={selectedItems}
-                selectOptions={filterValues}
-                onSelect={onSelect}
-              />
-              <StyledFilterButton
-                onClick={() => console.log('aiai')}
-                variant="contained"
-              >
-                Aplicar Filtros
-              </StyledFilterButton>
+              <SingleSelect />
             </StyledForm>
           </StyledFormContainer>
         </Popover>
