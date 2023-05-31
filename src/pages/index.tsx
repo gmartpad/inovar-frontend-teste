@@ -36,7 +36,7 @@ const Home: React.FC<HomeProps> = ({ links }) => {
 
   useEffect(() => {
     handleAddLinks()
-  }, [page])
+  }, [page, handleAddLinks])
 
   return (
     <PageContainer>

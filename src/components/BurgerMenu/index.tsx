@@ -48,7 +48,7 @@ const BurgerMenu: React.FC = () => {
           <StyledFormContainer>
             <StyledForm>
               <InputLabel data-testid="burger-input-label">
-                {selectedItems?.length === 0 ? 'Order by...' : selectedItems}
+                {selectedItems == false ? 'Order by...' : selectedItems}
               </InputLabel>
               <SingleSelect />
             </StyledForm>
