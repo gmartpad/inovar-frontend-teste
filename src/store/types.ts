@@ -1,0 +1,14 @@
+const ORDER_SELECTED_VALUE = 'ORDER_SELECTED_VALUE'
+const POST_SEARCH_VALUE = 'POST_SEARCH_VALUE'
+const DEBOUNCE_ACTIVE = 'DEBOUNCE_ACTIVE'
+
+/**
+ * @enum {string}
+ */
+const types = {
+  ORDER_SELECTED_VALUE,
+  POST_SEARCH_VALUE,
+  DEBOUNCE_ACTIVE,
+}
+
+export default types

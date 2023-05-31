@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { Box } from '@mui/material'
 import {
   StyledAddIcon,
@@ -8,7 +8,11 @@ import {
 } from './styled'
 import { useRouter } from 'next/router'
 
-const AddPostButton: React.FC = () => {
+interface AddPostButtonProps {
+  style?: CSSProperties
+}
+
+const AddPostButton: React.FC<AddPostButtonProps> = ({ style = {} }) => {
   const router = useRouter()
 
   const handleClick = () => {
@@ -17,6 +21,7 @@ const AddPostButton: React.FC = () => {
 
   return (
     <StyledButton
+      style={style}
       data-testid="add-post-button"
       color="primary"
       variant="contained"

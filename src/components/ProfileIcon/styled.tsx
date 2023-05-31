@@ -1,7 +1,6 @@
 import { Box, Button, FormControl, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import customTheme from '@src/theme'
-import { TailSpin } from 'react-loader-spinner'
 
 interface ProfileIconButtonProps {
   ismobile: string
@@ -23,7 +22,7 @@ export const ProfileIconButton = styled(Button)(
 export const NotificationsTypography = styled(Typography)({
   textAlign: 'center',
   fontSize: 12,
-  padding: 1,
+  paddingBottom: 4,
   color: '#fff',
 })
 

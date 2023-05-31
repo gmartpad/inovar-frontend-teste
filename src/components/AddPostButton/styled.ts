@@ -1,8 +1,9 @@
 import { Button, Box, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { styled } from '@mui/system'
+import { styled as MUIStyled } from '@mui/system'
+import styled from '@emotion/styled'
 
-export const StyledButton = styled(Button)({
+export const StyledButton = MUIStyled(Button)({
   paddingTop: 0,
   paddingBottom: 0,
   height: 'fit-content',
@@ -11,13 +12,13 @@ export const StyledButton = styled(Button)({
 
 // ----
 
-export const StyledAddIcon = styled(AddIcon)({
+export const StyledAddIcon = MUIStyled(AddIcon)({
   marginRight: 8,
 })
 
 // ----
 
-export const VerticalLine = styled(Box)({
+export const VerticalLine = MUIStyled(Box)({
   marginLeft: 1,
   marginRight: 'auto',
   borderLeft: '1px solid',
@@ -27,7 +28,9 @@ export const VerticalLine = styled(Box)({
 
 // ----
 
-export const StyledTypography = styled(Typography)({
-  width: '100%',
-  textAlign: 'center',
-})
+export const StyledTypography = styled.p`
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+`

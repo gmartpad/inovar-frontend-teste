@@ -1,7 +1,13 @@
+import PageContainer from '@components/PageContainer'
+import { Typography } from '@mui/material'
 import React from 'react'
 
 const SignIn: React.FC = () => {
-  return <div>SignIn</div>
+  return (
+    <PageContainer>
+      <Typography>SignIn</Typography>
+    </PageContainer>
+  )
 }
 
 export default SignIn
